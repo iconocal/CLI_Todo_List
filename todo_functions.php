@@ -7,8 +7,8 @@
  function listItems($list) {
     $todoItem = '';
     foreach ($list as $key => $item) {
-        $todoItem .= "$key $item\n";
         $key++;
+        $todoItem .= "$key $item\n";  
     }
     return "$todoItem\n";
 }
@@ -19,9 +19,14 @@
 
  function getInput($upper = false)
  {
-     $input = strtoupper(trim(fgets(STDIN)));
-     return $input;
- }
+     if($upper) {
+        return strtoupper(trim(fgets(STDIN)));
+    } else {
+     return trim(fgets(STDIN));
+    }
+}
+
+
 
  // The loop!
  do {
