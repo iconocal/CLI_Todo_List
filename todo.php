@@ -6,6 +6,14 @@
 // Create array to hold list of todo items
 $items = array();
 
+// //////////
+// FUNCTIONS
+// /////////
+
+// List array items formatted for CLI
+
+
+
 // The loop!
 do {
     // Iterate through list items
