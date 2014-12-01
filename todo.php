@@ -10,20 +10,31 @@ $items = array();
 // FUNCTIONS
 // /////////
 
-// List array items formatted for CLI
+// Defined Function: List Items
+
+function listItems($list) {
+    $todoItem = '';
+    foreach ($list as $key => $item) {
+        $todoItem .= "$key $item\n";
+        $key++;
+    }
+    return "$todoItem\n";
+}
+// Defined Function: Get input
+
+function getInput($input) {
+
+}
 
 
 
 // The loop!
 do {
-    // Iterate through list items
-    foreach ($items as $key => $item) {
-        // Display each item and a newline
-        $key++;
-        echo "[{$key}] {$item}\n";
-    }
 
-    // Show the menu options
+    echo listItems($items);
+
+    //Show the menu options
+
     echo '(N)ew item, (R)emove item, (Q)uit : ';
 
     // Get the input from user
@@ -51,7 +62,7 @@ do {
 // Say Goodbye!
 echo "Goodbye!\n";
 
-// Exit with 0 errors
+// // Exit with 0 errors
 exit(0);
 
 
