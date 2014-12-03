@@ -8,6 +8,19 @@
 /// DEFINED FUNCTIONS ///
 ////////////////////////
 
+// Defined Function: readFile - Opens/Reads list.txt into $items array
+
+ function readList($path) {
+ 	
+ 	$filename = $path;
+ 	$handle = fopen($filename, 'r');
+	$contents = fread($handle, filesize($filename));
+	$contentsArray = explode("\n", $contents);
+	fclose($handle);
+	return $contentsArray;
+}
+	  
+
 
  // Defined Function: List array items formatted for CLI
 
@@ -90,6 +103,15 @@ function sortRev($sort_Array) {
 		echo 'Enter path to file: ';
 		$path = getInput();
 		echo $path . PHP_EOL;
+			if (filesize($path) > 0) {
+				$userList = readList($path);
+				var_dump($userList);
+			}
+
+			else {
+				echo "Empty file";
+			}
+
 	} 
 
 
