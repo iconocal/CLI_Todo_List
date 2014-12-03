@@ -1,67 +1,138 @@
 <?php
 
-// Adding Sort Functions
 
- // Create array to hold list of todo items
+
  $items = array();
 
- // List array items formatted for CLI
+//////////////////////////
+/// DEFINED FUNCTIONS ///
+////////////////////////
+
+
+ // Defined Function: List array items formatted for CLI
+
  function listItems($list) {
-    $todoItem = '';
-    foreach ($list as $key => $item) {
-        $key++;
-        $todoItem .= "$key $item\n";  
-    }
-    return "$todoItem\n";
+	$todoItem = '';
+	foreach ($list as $key => $item) {
+		$key++;
+		$todoItem .= "$key $item\n";  
+	}
+	return "$todoItem\n";
 }
 
 // Defined Function: Get Input
-// Get STDIN, strip whitespace and newlines,
-// and convert to uppercase if $upper is true
 
  function getInput($upper = false)
  {
-     if($upper) {
-        return strtoupper(trim(fgets(STDIN)));
-    } else {
-     return trim(fgets(STDIN));
-    }
+	 if($upper) {
+		return strtoupper(trim(fgets(STDIN)));
+	} else {
+	 return trim(fgets(STDIN));
+	}
 }
 
+// Defined Function: sortAz
 
+function sortAz($sort_Array) {
+	asort($sort_Array);
+	return $sort_Array;
+}
 
+// Defined Function: sortZa
 
- // The loop!
+function sortZa($sort_Array) {
+	arsort($sort_Array);
+	return $sort_Array;
+}
+
+// Defined Function: sortOrd
+
+function sortOrd($sort_Array) {
+	ksort($sort_Array);
+	return $sort_Array;
+}
+
+// Defined Function: sortRev
+
+function sortRev($sort_Array) {
+	krsort($sort_Array);
+	return $sort_Array;
+}
+
+/////////////////
+// The loop! ///
+///////////////
+
  do {
-     // Echo the list produced by the function
-     echo listItems($items);
 
-     // Show the menu options
-     echo '(N)ew item, (R)emove item, (Q)uit : ';
+ 	/////////////////////////
+	// DISPLAY ITEM LIST ///
+ 	///////////////////////
 
-     // Get the input from user
-     // Use trim() to remove whitespace and newlines
-     $input = getInput(true);
+	echo listItems($items);
 
-     // Check for actionable input
-     if ($input == 'N') {
-         // Ask for entry
-         echo 'Enter item: ';
-         // Add entry to list array
-         $items[] = getInput();
-     } elseif ($input == 'R') {
-         // Remove which item?
-         echo 'Enter item number to remove: ';
-         // Get array key
-         $key = getInput();
-         // Remove from array
-         unset($items[$key]);
-     }
- // Exit when input is (Q)uit
+	////////////////////////////
+	// DISPLAY MENU OPTIONS ///
+	//////////////////////////
+
+	echo '(N)ew item, (R)emove item, (S)ort, (Q)uit : ';
+
+	// GET INPUT: N, R, S, Q
+   
+	$input = getInput(true);
+
+
+	//////////////////////////////////////////
+	/// ACTIONS TO TAKE DEPENDING ON INPUT //
+	////////////////////////////////////////
+
+	if ($input == 'N') {
+		echo 'Enter item: ';
+		$items[] = getInput();
+		echo PHP_EOL;
+	} 
+
+	elseif ($input == 'R') {
+		echo 'Enter item number to remove: ';
+		$key = getInput();
+		$key--;
+		unset($items[$key]);
+		echo PHP_EOL;
+	} 
+
+	elseif ($input == 'S') {
+		echo 'Sort by: (A) to Z, (Z) to A, (O)rder of entry, (R)everse order: ';
+		
+		$sortType = getInput(true);
+
+		switch ($sortType) {
+			case 'A':
+				$items = sortAz($items);
+				break;
+			
+			case 'Z':
+				$items = sortZa($items);
+				break;
+
+			case 'O':
+				$items = sortOrd($items);
+				break;
+
+			case 'R':
+				$items = sortRev($items);
+				break;
+		}
+	}
+
+////////////////////////////////
+// Exit when input is (Q)uit //
+//////////////////////////////
+
  } while ($input != 'Q');
 
- // Say Goodbye!
+ // Say Goodbye! //
+
  echo "Goodbye!\n";
 
- // Exit with 0 errors
- exit(0);
+
+ // exit(0);
