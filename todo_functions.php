@@ -75,7 +75,7 @@ function sortRev($sort_Array) {
 	// DISPLAY MENU OPTIONS ///
 	//////////////////////////
 
-	echo '(N)ew item, (R)emove item, (S)ort, (Q)uit : ';
+	echo '(O)pen, (N)ew item, (R)emove item, (S)ort, (Q)uit : ';
 
 	// GET INPUT: N, R, S, Q
    
@@ -86,7 +86,14 @@ function sortRev($sort_Array) {
 	/// ACTIONS TO TAKE DEPENDING ON INPUT //
 	////////////////////////////////////////
 
-	if ($input == 'N') {
+	if ($input == 'O') {
+		echo 'Enter path to file: ';
+		$path = getInput();
+		echo $path . PHP_EOL;
+	} 
+
+
+	elseif ($input == 'N') {
 		echo 'Enter item: ';
 		$items[] = getInput();
 		echo PHP_EOL;
