@@ -11,7 +11,6 @@
 // Defined Function: readFile - Opens/Reads list.txt into $items array
 
  function readList($path) {
- 	
  	$filename = $path;
  	$handle = fopen($filename, 'r');
 	$contents = fread($handle, filesize($filename));
@@ -105,7 +104,7 @@ function sortRev($sort_Array) {
 		echo $path . PHP_EOL;
 			if (filesize($path) > 0) {
 				$userList = readList($path);
-				var_dump($userList);
+				$items = array_merge($items, $userList);
 			}
 
 			else {
