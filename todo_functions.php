@@ -8,7 +8,13 @@
 /// DEFINED FUNCTIONS ///
 ////////////////////////
 
-// Defined Function: readFile - Opens/Reads list.txt into $items array
+
+// Defined Function: writeFile() - writes user list to file //
+
+
+
+
+// Defined Function: readFile() - Opens/Reads list.txt into $items array //
 
  function readList($path) {
  	$filename = $path;
@@ -20,8 +26,7 @@
 }
 	  
 
-
- // Defined Function: List array items formatted for CLI
+ // Defined Function: listItems() - List array items formatted for CLI //
 
  function listItems($list) {
 	$todoItem = '';
@@ -32,7 +37,7 @@
 	return "$todoItem\n";
 }
 
-// Defined Function: Get Input
+// Defined Function: getInput() - gets user input //
 
  function getInput($upper = false)
  {
@@ -43,33 +48,35 @@
 	}
 }
 
-// Defined Function: sortAz
+// Defined Function: sortAz()
 
 function sortAz($sort_Array) {
 	asort($sort_Array);
 	return $sort_Array;
 }
 
-// Defined Function: sortZa
+// Defined Function: sortZa()
 
 function sortZa($sort_Array) {
 	arsort($sort_Array);
 	return $sort_Array;
 }
 
-// Defined Function: sortOrd
+// Defined Function: sortOrd()
 
 function sortOrd($sort_Array) {
 	ksort($sort_Array);
 	return $sort_Array;
 }
 
-// Defined Function: sortRev
+// Defined Function: sortRev()
 
 function sortRev($sort_Array) {
 	krsort($sort_Array);
 	return $sort_Array;
 }
+
+
 
 /////////////////
 // The loop! ///
@@ -87,7 +94,7 @@ function sortRev($sort_Array) {
 	// DISPLAY MENU OPTIONS ///
 	//////////////////////////
 
-	echo '(O)pen, (N)ew item, (R)emove item, (S)ort, (Q)uit : ';
+	echo '(O)pen, (N)ew item, (R)emove item, (S)ort, s(A)ve, (Q)uit : ';
 
 	// GET INPUT: N, R, S, Q
    
@@ -113,6 +120,18 @@ function sortRev($sort_Array) {
 
 	} 
 
+	elseif ($input == 'A') {
+		echo 'Enter path/filename: ';
+		$pathWrite = getInput();
+			if (file_exists($pathWrite) > 0) {
+				echo "The file {$pathWrite} already exists.\n";
+				
+			}
+
+			else {
+				echo "This file does not exist. I shall create it!\n";
+			}
+	} 
 
 	elseif ($input == 'N') {
 		echo 'Enter item: ';
