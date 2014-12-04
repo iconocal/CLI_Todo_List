@@ -11,6 +11,17 @@
 
 // Defined Function: writeFile() - writes user list to file //
 
+function writeFile($path, $arrayList) {
+	$filename = $path;
+	$handle = fopen($filename, 'w');
+	foreach ($arrayList as $listItem) {
+		fwrite($handle, $listItem . PHP_EOL);
+	}
+
+	fclose($handle);
+
+	return "The file: $filename has been saved!";
+}
 
 
 
@@ -121,20 +132,34 @@ function sortRev($sort_Array) {
 	} 
 
 	elseif ($input == 'A') {
-		echo 'Enter path/filename: ';
+		echo "\nEnter path/filename: ";
 		$pathWrite = getInput();
 			if (file_exists($pathWrite) > 0) {
-				echo "The file {$pathWrite} already exists.\n";
+				echo "\nThe file {$pathWrite} already exists.\n";
+				echo "\nAre you sure you want to overwrite it? (Y/N): ";
+				$overwrite = getInput(true);
+					if ($overwrite == 'Y') {
+						echo "Call function writeFile()\n";
+						echo writeFile($pathWrite, $items) . PHP_EOL;
+
+					} 
+
+					else {
+						echo "You have chosen not to overwrite: $pathWrite\n";
+						echo " \n";
+					}
+
 				
 			}
 
 			else {
 				echo "This file does not exist. I shall create it!\n";
+				echo writeFile($pathWrite, $items) . PHP_EOL;
 			}
 	} 
 
 	elseif ($input == 'N') {
-		echo 'Enter item: ';
+		echo "\nEnter item: ";
 		$items[] = getInput();
 		echo PHP_EOL;
 	} 
