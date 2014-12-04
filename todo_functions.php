@@ -139,7 +139,7 @@ function sortRev($sort_Array) {
 				echo "\nAre you sure you want to overwrite it? (Y/N): ";
 				$overwrite = getInput(true);
 					if ($overwrite == 'Y') {
-						echo "Call function writeFile()\n";
+						echo "\n";
 						echo writeFile($pathWrite, $items) . PHP_EOL;
 
 					} 
@@ -153,7 +153,7 @@ function sortRev($sort_Array) {
 			}
 
 			else {
-				echo "This file does not exist. I shall create it!\n";
+				echo "\nThis file does not exist. I shall create it!\n";
 				echo writeFile($pathWrite, $items) . PHP_EOL;
 			}
 	} 
